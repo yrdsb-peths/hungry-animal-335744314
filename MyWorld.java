@@ -8,8 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MyWorld extends World
 {
-    private GifImage frames = new GifImage("Giphy.gif");
-    private Wombat player = new Wombat();
+    //private GifImage frames = new GifImage("Giphy.gif");
+    private Cat player = new Cat();
     private int score = 0;
     private Label showScore = new Label(score, 30);
     
@@ -23,7 +23,7 @@ public class MyWorld extends World
 
     public void act() 
     {
-        setBackground(frames.getCurrentImage());
+        //setBackground(frames.getCurrentImage());
         if(score != player.getScore())
         {
             score = player.getScore();
