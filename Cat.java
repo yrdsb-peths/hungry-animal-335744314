@@ -8,12 +8,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 */
 public class Cat extends Actor
 {
-    private int speed = 2;
+    private int speed = 3;
     private boolean sprint = false;
     private int timing = 0;
     private int score = 0;
     private int index = 0;
     private boolean faceR = true;
+    private boolean isMoving = false;
     private GreenfootImage[] frameR = new GreenfootImage[8];
     private GreenfootImage[] frameL = new GreenfootImage[8];
     
@@ -42,7 +43,7 @@ public class Cat extends Actor
         
         if(sprint)
         {
-            speed = 4;
+            speed = 7;
         }
         else
         {
@@ -53,19 +54,13 @@ public class Cat extends Actor
         {
             setLocation(getX() - speed, getY());
             faceR = false;
-        }
-        if(Greenfoot.isKeyDown("w"))
-        {
-            setLocation(getX(), getY() - speed);
-        }
-        if(Greenfoot.isKeyDown("s"))
-        {
-            setLocation(getX(), getY() + speed);
+            isMoving = true;
         }
         if(Greenfoot.isKeyDown("d"))
         {
             setLocation(getX() + speed, getY());
             faceR = true;
+            isMoving = true;
         }
         
         if(Greenfoot.isKeyDown("space"))
@@ -82,17 +77,20 @@ public class Cat extends Actor
             timing = 0;
         }
         
-        index++;
-        index %= 8;
-        
-        if(faceR)
+        if(isMoving)
         {
-            setImage(frameR[index]);
+            index++;
+            index %= 8;
+            if(faceR)
+            {
+                setImage(frameR[index]);
+            }
+            else
+            {
+                setImage(frameL[index]);
+            }
         }
-        else
-        {
-            setImage(frameL[index]);
-        }
+        isMoving = false;
     }    
     
     public int getScore()

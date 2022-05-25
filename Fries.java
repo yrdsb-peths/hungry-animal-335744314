@@ -9,9 +9,26 @@ import java.util.List;
  */
 public class Fries extends Actor
 {
+    private static int fallSpeed = 3;
+    
     public void act()
     {
-        setLocation(getX(), getY() + 3);
-        
+        setLocation(getX(), getY() + fallSpeed);
+        if(getY() >= 635)
+        {
+            MyWorld world = (MyWorld) getWorld();
+            world.end();
+            world.removeObject(this);
+        }
+    }
+    
+    public static void setFallSpeed(int newValue)
+    {
+        fallSpeed = newValue;
+    }
+    
+    public static int getFallSpeed()
+    {
+        return fallSpeed;
     }
 }

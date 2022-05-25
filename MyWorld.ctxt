@@ -9,4 +9,6 @@ comment3.params=
 comment3.target=void\ addFries()
 comment4.params=
 comment4.target=void\ setScore()
-numComments=5
+comment5.params=
+comment5.target=void\ end()
+numComments=6
