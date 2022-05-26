@@ -17,6 +17,7 @@ public class Cat extends Actor
     private boolean isMoving = false;
     private GreenfootImage[] frameR = new GreenfootImage[8];
     private GreenfootImage[] frameL = new GreenfootImage[8];
+    private GreenfootSound meow = new GreenfootSound("Meow.mp3");
     
     public Cat()
     {
@@ -70,6 +71,8 @@ public class Cat extends Actor
             {
                 removeTouching(Fries.class);
                 score++;
+                meow.stop();
+                meow.play();
             }
         }
         else

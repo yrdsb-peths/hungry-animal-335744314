@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MyWorld extends World
 {
-    //private GifImage frames = new GifImage("Giphy.gif");
+    private GifImage frames = new GifImage("Giphy.gif");
     private Cat player = new Cat();
     private int score;
     private int previousX;
@@ -19,16 +19,18 @@ public class MyWorld extends World
     private boolean ended;
     private int delay;
     private boolean won;
+    private GreenfootSound music = new GreenfootSound("Nyan Cat.mp3");
     
     public MyWorld()
     {    
         super(1050, 639, 1);
         score = 0;
-        delay = 300;
+        delay = 240;
         ended = false;
         won = false;
         Fries.setFallSpeed(3);
         previousX = 525;
+        music.play();
         
         addObject(player, 525, 550);
         addFries();
@@ -37,7 +39,7 @@ public class MyWorld extends World
 
     public void act() 
     {
-        //setBackground(frames.getCurrentImage());
+        setBackground(frames.getCurrentImage());
         if(score != player.getScore() && !ended)
         {
             score = player.getScore();
@@ -63,6 +65,7 @@ public class MyWorld extends World
             delay--;
             if(delay == 0)
             {
+                music.stop();
                 Greenfoot.setWorld(new TitleScreen());
             }
         }
@@ -72,6 +75,14 @@ public class MyWorld extends World
     {
         previousX = previousX + (Greenfoot.getRandomNumber(950) - 450);
         addObject(new Fries(), previousX, 0);
+        if(previousX > 900)
+        {
+            previousX = 900;
+        }
+        else if(previousX < 100)
+        {
+            previousX = 100;
+        }
     }
     
     public void setScore()
